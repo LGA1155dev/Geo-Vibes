@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geo-Vibes - Quiz de Geografia</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Tela de Login -->
+    <div id="login-screen" class="screen active">
+        <div class="login-container">
+            <div class="logo">
+                <h1>Geo-Vibes</h1>
+                <p>Teste seus conhecimentos geográficos!</p>
+            </div>
+            
+            <div class="auth-tabs">
+                <button class="tab-btn active" onclick="switchTab('login')">Login</button>
+                <button class="tab-btn" onclick="switchTab('register')">Cadastro</button>
+            </div>
+
+            <form id="login-form" class="auth-form active">
+                <div class="form-group">
+                    <label for="login-username">Nome de Usuário</label>
+                    <input type="text" id="login-username" placeholder="Digite seu nome" required>
+                </div>
+                <button type="submit" class="btn-primary">Entrar</button>
+            </form>
+
+            <form id="register-form" class="auth-form">
+                <div class="form-group">
+                    <label for="register-username">Nome de Usuário</label>
+                    <input type="text" id="register-username" placeholder="Escolha um nome" required>
+                </div>
+                <button type="submit" class="btn-primary">Cadastrar</button>
+            </form>
+
+            <div class="guest-container">
+                <p>Ou</p>
+                <button class="btn-guest" onclick="startGuest()">Jogar como Convidado</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tela do Quiz -->
+    <div id="quiz-screen" class="screen">
+        <div class="quiz-container">
+            <header class="quiz-header">
+                <div class="user-info">
+                    <span id="current-user">Jogador</span>
+                    <span id="current-score">Pontos: 0</span>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div id="progress-fill"></div>
+                    </div>
+                    <div id="question-counter">Questão 1 de 8</div>
+                </div>
+                <div class="timer-container">
+                    <div id="timer" class="timer">01:00</div>
+                    <div id="difficulty-badge" class="difficulty easy">FÁCIL</div>
+                </div>
+            </header>
+
+            <main class="quiz-main">
+                <div id="question-container" class="question-container">
+                    <div id="question-image" class="question-image"></div>
+                    <h2 id="question-text" class="question-text"></h2>
+                    <div id="options-container" class="options-container"></div>
+                </div>
+
+                <div id="feedback-container" class="feedback-container hidden">
+                    <div id="feedback-message" class="feedback-message"></div>
+                    <div class="feedback-actions">
+                        <button id="next-btn" class="btn-primary">Próximo</button>
+                        <button id="skip-btn" class="btn-secondary">Pular</button>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Tela de Ranking -->
+    <div id="ranking-screen" class="screen">
+        <div class="ranking-container">
+            <div class="ranking-header">
+                <h1>🏆 Ranking Final</h1>
+                <p>Veja quem marcou mais pontos!</p>
+            </div>
+            
+            <div id="ranking-list" class="ranking-list"></div>
+            
+            <div class="ranking-actions">
+                <button class="btn-primary" onclick="restartGame()">Jogar Novamente</button>
+                <button class="btn-secondary" onclick="goToLogin()">Voltar ao Login</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sons do Jogo -->
+    <audio id="correct-sound" src="https://assets.mixkit.co/active_storage/sfx/2802/2802-preview.mp3" preload="auto"></audio>
+    <audio id="wrong-sound" src="https://assets.mixkit.co/active_storage/sfx/2803/2803-preview.mp3" preload="auto"></audio>
+    <audio id="time-up-sound" src="https://assets.mixkit.co/active_storage/sfx/2804/2804-preview.mp3" preload="auto"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
