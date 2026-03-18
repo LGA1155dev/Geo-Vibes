@@ -126,7 +126,7 @@ const QUESTIONS = [
             ],
         correct: 4,
         difficulty: "easy",
-        time: 60,
+        time: 90,
         image: "img/Equinocio.gif"
     },
     
@@ -142,8 +142,8 @@ const QUESTIONS = [
 "Tropico de capricornio e o de câncer. onde A é o de Câncer o B o de Capricornio",
             ],
         correct: 5,
-        difficulty: "medium",
-        time: 60,
+        difficulty: "medio",
+        time: 90,
         image: "img/Tropicos.png"
     },
     
@@ -159,8 +159,8 @@ const QUESTIONS = [
 "A inclinação do eixo da Terra faz com que o Sol fique mais forte no centro da Terra e mais fraco nas bordas do planeta.",
             ],
         correct: 1,
-        difficulty: "medium",
-        time: 60,
+        difficulty: "medio",
+        time: 90,
         image: "img/TerraGirando.gif"
     },
     
@@ -168,7 +168,7 @@ const QUESTIONS = [
     {
         question: "O movimento de rotação da terra ocorre no sentido anti-horario de oeste para leste em torno de um eixo imaginario que passa pelos dois polos. Esse movimento influencia... : ",
         options: [
-            "A rotação da Terra faz com que diferentes partes do planeta se voltem para o Sol ou fiquem voltadas para o lado oposto. A parte voltada para o Sol recebe luz (dia), enquanto a parte oposta fica sem iluminação (noite).",
+            "faz com que diferentes partes do planeta se voltem para o Sol ou fiquem voltadas para o lado oposto. A parte voltada para o Sol recebe luz (dia), enquanto a parte oposta fica sem iluminação (noite).",
 
 "A Terra gira em torno de seu próprio eixo. Quando uma região está voltada para o Sol ocorre o dia, e quando fica voltada para o lado oposto ocorre a noite.",
 
@@ -178,7 +178,7 @@ const QUESTIONS = [
 
             ],
         correct: [0, 1, 2, 3],
-        difficulty: "hard",
+        difficulty: "dificil",
         time: 120,
         image: "img/rotacao.gif"
     },
@@ -186,7 +186,7 @@ const QUESTIONS = [
         question: "Qual o caminho mais curto?",
         options: ["Nilo", "Amazonas", "Danúbio", "Mississipi"],
         correct: 2,
-        difficulty: "hard",
+        difficulty: "dificil",
         time: 120,
         image: "img/Caminho.png".width = '100px',
     }
