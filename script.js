@@ -15,14 +15,8 @@ const GameData = {
         if (savedRankings) {
             this.rankings = JSON.parse(savedRankings);
         } else {
-            // Ranking inicial com alguns jogadores fictícios
-            this.rankings = [
-                { name: 'Ana Silva', score: 18, lastPlayed: new Date().toISOString() },
-                { name: 'Carlos Santos', score: 15, lastPlayed: new Date().toISOString() },
-                { name: 'Mariana Lima', score: 12, lastPlayed: new Date().toISOString() },
-                { name: 'João Pereira', score: 9, lastPlayed: new Date().toISOString() },
-                { name: 'Patrícia Costa', score: 6, lastPlayed: new Date().toISOString() }
-            ];
+            // Ranking inicial vazio - só mostrar jogadores reais
+            this.rankings = [];
             this.saveRankings();
         }
     },
@@ -142,7 +136,7 @@ const QUESTIONS = [
 "Tropico de capricornio e o de câncer. onde A é o de Câncer o B o de Capricornio",
             ],
         correct: 5,
-        difficulty: "medio",
+        difficulty: "medium",
         time: 90,
         image: "img/Tropicos.png"
     },
@@ -159,7 +153,7 @@ const QUESTIONS = [
 "A inclinação do eixo da Terra faz com que o Sol fique mais forte no centro da Terra e mais fraco nas bordas do planeta.",
             ],
         correct: 1,
-        difficulty: "medio",
+        difficulty: "medium",
         time: 90,
         image: "img/TerraGirando.gif"
     },
@@ -177,8 +171,8 @@ const QUESTIONS = [
 "À medida que a Terra gira, diferentes regiões passam a receber luz solar enquanto outras ficam na sombra, provocando a sucessão de dias e noites no planeta.",
 
             ],
-        correct: [0, 1, 2, 3],
-        difficulty: "dificil",
+        correct: 0,
+        difficulty: "hard",
         time: 120,
         image: "img/rotacao.gif"
     },
@@ -186,13 +180,13 @@ const QUESTIONS = [
         question: "Qual o caminho mais curto?",
         options: ["Nilo", "Amazonas", "Danúbio", "Mississipi"],
         correct: 2,
-        difficulty: "dificil",
+        difficulty: "hard",
         time: 120,
         image: "img/Caminho.png".width = '100px',
     }
 ];
 
-// Sistema de Áudio
+        // Sistema de Áudio
 const AudioSystem = {
     sounds: {},
     
@@ -203,6 +197,7 @@ const AudioSystem = {
         this.sounds.timeUp = new Audio('https://assets.mixkit.co/active_storage/sfx/2032/2032-preview.mp3');
         this.sounds.buttonClick = new Audio('https://assets.mixkit.co/active_storage/sfx/2574/2574-preview.mp3');
         this.sounds.levelUp = new Audio('https://assets.mixkit.co/active_storage/sfx/2021/2021-preview.mp3');
+        this.sounds.perfectStreak = new Audio('https://assets.mixkit.co/active_storage/sfx/2023/2023-preview.mp3');
         
         // Configurar volumes
         this.sounds.correct.volume = 0.4;
@@ -210,6 +205,7 @@ const AudioSystem = {
         this.sounds.timeUp.volume = 0.4;
         this.sounds.buttonClick.volume = 0.4;
         this.sounds.levelUp.volume = 0.4;
+        this.sounds.perfectStreak.volume = 0.6;
     },
     
     playCorrect() {
@@ -235,6 +231,11 @@ const AudioSystem = {
     playLevelUp() {
         this.sounds.levelUp.currentTime = 0;
         this.sounds.levelUp.play().catch(e => console.log('Áudio bloqueado'));
+    },
+    
+    playPerfectStreak() {
+        this.sounds.perfectStreak.currentTime = 0;
+        this.sounds.perfectStreak.play().catch(e => console.log('Áudio bloqueado'));
     }
 };
 
@@ -410,10 +411,26 @@ const Game = {
         
         // Atualizar pontuação e feedback
         if (isCorrect) {
-            this.score += 3;
+            // Sistema de pontos dobrados a cada 3 acertos consecutivos
+            let points = 3;
+            if (this.consecutiveCorrect > 0 && (this.consecutiveCorrect + 1) % 3 === 0) {
+                points = 6; // Dobrar pontos a cada 3 acertos
+                this.showFeedback('success', `Resposta Correta! +6 pontos (BÔNUS!)`);
+                AudioSystem.playLevelUp();
+            } else {
+                this.showFeedback('success', 'Resposta Correta! +3 pontos');
+            }
+            
+            this.score += points;
             this.consecutiveCorrect++;
-            this.showFeedback('success', 'Resposta Correta! +3 pontos');
-            AudioSystem.playCorrect();
+            
+            // Áudio especial para sequência perfeita
+            if (this.consecutiveCorrect === this.shuffledQuestions.length) {
+                AudioSystem.playPerfectStreak();
+                this.showFeedback('success', '🎉 SEQUÊNCIA PERFEITA! Parabéns!');
+            } else {
+                AudioSystem.playCorrect();
+            }
         } else {
             this.consecutiveCorrect = 0;
             this.showFeedback('error', `Resposta Errada! A alternativa correta era: ${question.options[question.correct]}`);

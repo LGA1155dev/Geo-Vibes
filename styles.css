@@ -412,10 +412,11 @@ body {
 }
 
 .question-text {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: 700;
     margin-bottom: 2rem;
     color: var(--text-primary);
+    line-height: 1.5;
 }
 
 .options-container {
@@ -430,7 +431,7 @@ body {
     border-radius: 16px;
     background: var(--option-bg);
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 600;
     text-align: left;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -524,7 +525,7 @@ body {
 }
 
 .feedback-message {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 600;
     margin-bottom: 2rem;
     color: var(--text-primary);
@@ -546,23 +547,46 @@ body {
 
 /* Ranking Screen */
 .ranking-container {
-    background: var(--card-bg);
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
     padding: 3rem;
     border-radius: 20px;
     box-shadow: var(--shadow);
     width: 100%;
     max-width: 600px;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.ranking-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--neon-gradient);
+    box-shadow: var(--neon-glow);
 }
 
 .ranking-header h1 {
     color: var(--primary-color);
     margin-bottom: 1rem;
+    font-size: 2rem;
+    background: var(--neon-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+    animation: neon-flicker 2s infinite alternate;
 }
 
 .ranking-header p {
     color: var(--text-secondary);
     margin-bottom: 2rem;
+    font-size: 1.1rem;
 }
 
 .ranking-list {
@@ -576,29 +600,49 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem;
-    background: #f8fafc;
-    border-radius: 12px;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
     border: 2px solid var(--border-color);
+    transition: all 0.3s ease;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.ranking-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 245, 255, 0.3), var(--neon-glow);
 }
 
 .ranking-item:first-child {
-    background: #fffbeb;
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(245, 158, 11, 0.1));
     border-color: #f59e0b;
+    box-shadow: 0 8px 25px rgba(245, 158, 11, 0.3), 0 0 15px #f59e0b;
+    animation: champion-glow 2s infinite alternate;
+}
+
+@keyframes champion-glow {
+    from { box-shadow: 0 8px 25px rgba(245, 158, 11, 0.3), 0 0 10px #f59e0b; }
+    to { box-shadow: 0 8px 25px rgba(245, 158, 11, 0.5), 0 0 20px #f59e0b; }
 }
 
 .ranking-item .rank {
-    font-weight: 700;
-    font-size: 1.2rem;
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    text-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
 }
 
 .ranking-item .name {
     font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--text-primary);
 }
 
 .ranking-item .score {
-    font-weight: 700;
+    font-weight: 800;
+    font-size: 1.2rem;
     color: var(--primary-color);
+    text-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
 }
 
 .ranking-actions {
@@ -658,16 +702,34 @@ body {
     }
     
     .option-btn {
-        padding: 1.5rem 1.25rem;
-        font-size: 1.1rem;
+        padding: 1.25rem;
+        font-size: 1rem;
     }
     
     .question-text {
-        font-size: 1.25rem;
+        font-size: 1.1rem;
     }
     
     .feedback-message {
-        font-size: 1.1rem;
+        font-size: 1rem;
+    }
+    
+    .user-info span:last-child {
+        font-size: 0.85rem;
+    }
+    
+    .timer {
+        font-size: 1.25rem;
+        padding: 6px 12px;
+    }
+    
+    .difficulty {
+        font-size: 0.75rem;
+        padding: 4px 8px;
+    }
+    
+    .question-counter {
+        font-size: 0.85rem;
     }
 }
 
@@ -682,17 +744,83 @@ body {
     }
     
     .option-btn {
-        padding: 1.25rem;
-        font-size: 1rem;
+        padding: 1rem;
+        font-size: 0.95rem;
     }
     
     .question-text {
-        font-size: 1.1rem;
+        font-size: 1rem;
+    }
+    
+    .feedback-message {
+        font-size: 0.95rem;
+    }
+    
+    .ranking-item {
+        padding: 1rem;
+    }
+    
+    .ranking-item .rank {
+        font-size: 1.2rem;
+    }
+    
+    .ranking-item .name {
+        font-size: 1rem;
+    }
+    
+    .ranking-item .score {
+        font-size: 1rem;
+    }
+    
+    .ranking-header h1 {
+        font-size: 1.75rem;
+    }
+    
+    .ranking-header p {
+        font-size: 1rem;
+    }
+}
+
+/* Melhorias de responsividade para telas muito pequenas */
+@media (max-width: 360px) {
+    .login-container, .quiz-container, .ranking-container {
+        padding: 1rem;
+        margin: 0.25rem;
+    }
+    
+    .option-btn {
+        padding: 0.75rem;
+        font-size: 0.9rem;
+    }
+    
+    .question-text {
+        font-size: 0.95rem;
+        line-height: 1.4;
     }
     
     .timer {
-        font-size: 1.25rem;
-        padding: 6px 12px;
+        font-size: 1.1rem;
+        padding: 4px 8px;
+    }
+    
+    .difficulty {
+        font-size: 0.7rem;
+        padding: 3px 6px;
+    }
+    
+    .ranking-item {
+        padding: 0.75rem;
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+    
+    .ranking-item .rank {
+        font-size: 1rem;
+    }
+    
+    .ranking-item .name, .ranking-item .score {
+        font-size: 0.9rem;
     }
 }
 
