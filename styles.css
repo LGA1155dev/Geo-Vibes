@@ -836,6 +836,18 @@ body {
     100% { transform: scale(1); }
 }
 
+@keyframes popIn {
+    0% { transform: scale(0.8); opacity: 0; }
+    50% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes bounce {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+
 .screen.active {
     animation: fadeIn 0.5s ease-out;
 }

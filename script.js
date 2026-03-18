@@ -142,17 +142,17 @@ const QUESTIONS = [
     },
     
     {
-        question: "A inclinação do eixo da Terra em relação ao plano de sua órbita desempenha um papel essencial na forma como a energia solar se distribui pelo planeta e na organização das zonas climáticas. Explique de que maneira essa inclinação modifica a quantidade de radiação solar recebida em diferentes latitudes e como essa variação contribui para a formação dos padrões climáticos da Terra: ",
+        question: "Inclinação da Terra: como afeta a radiação solar e o clima?",
         options: [
-            "A inclinação do eixo da Terra faz com que a radiação solar atinja o planeta com intensidades diferentes nas latitudes. Regiões próximas ao Equador recebem luz mais direta e são mais quentes, enquanto regiões próximas aos polos recebem menos energia solar e são mais frias. Essa diferença influencia a formação das zonas climáticas e os padrões de clima do planeta.",
+            "Equador recebe mais energia; polos menos → climas diferentes..",
 
-"A inclinação do eixo da Terra faz com que um hemisfério receba mais radiação solar em determinados períodos do ano do que o outro, o que altera as temperaturas e influencia os padrões climáticos em diferentes regiões.",
+            "Um hemisfério recebe mais sol em certas épocas do ano.",
 
-"As diferenças climáticas da Terra acontecem principalmente porque algumas regiões estão mais próximas do Sol do que outras durante a órbita do planeta.",
+            "Clima varia por estar mais perto do Sol na órbita.",
 
-"A inclinação do eixo da Terra faz com que o Sol fique mais forte no centro da Terra e mais fraco nas bordas do planeta.",
+            "Sol é mais forte no centro da Terra que nas bordas.",
             ],
-        correct: 1,
+        correct: 0,
         difficulty: "medium",
         time: 90,
         image: "img/TerraGirando.gif"
@@ -160,35 +160,86 @@ const QUESTIONS = [
     
     // Difíceis (2 questões)
     {
-        question: "O movimento de rotação da terra ocorre no sentido anti-horario de oeste para leste em torno de um eixo imaginario que passa pelos dois polos. Esse movimento influencia... : ",
+        question: "Considerando o movimento de rotação da Terra (de oeste para leste), qual explicação descreve corretamente o mecanismo físico responsável pela sucessão de dias e noites, levando em conta a posição relativa entre Terra e Sol?",
         options: [
-            "faz com que diferentes partes do planeta se voltem para o Sol ou fiquem voltadas para o lado oposto. A parte voltada para o Sol recebe luz (dia), enquanto a parte oposta fica sem iluminação (noite).",
+            "A rotação terrestre altera continuamente a orientação das diferentes longitudes em relação à radiação solar, fazendo com que regiões entrem e saiam do campo de iluminação.",
 
-"A Terra gira em torno de seu próprio eixo. Quando uma região está voltada para o Sol ocorre o dia, e quando fica voltada para o lado oposto ocorre a noite.",
+"A sucessão de dias e noites ocorre porque a órbita elíptica da Terra modifica periodicamente a distância entre o planeta e o Sol ao longo de um mesmo dia.",
 
-"O movimento de rotação faz com que a Terra gire continuamente. Assim, as partes do planeta entram e saem da iluminação solar, gerando a alternância entre dia e noite.",
+"A rotação provoca variações na intensidade intrínseca da radiação solar, que se intensifica quando incide diretamente e diminui quando se dispersa.",
 
-"À medida que a Terra gira, diferentes regiões passam a receber luz solar enquanto outras ficam na sombra, provocando a sucessão de dias e noites no planeta.",
+"O movimento de rotação desloca o eixo terrestre em relação ao plano orbital a cada dia, alterando a incidência solar entre hemisférios.",
 
             ],
         correct: 0,
         difficulty: "hard",
-        time: 120,
-        image: "img/rotacao.gif"
+        time: 240,
+        image: "img/rotacao-da-terra.gif"
     },
     {
         question: "Qual o caminho mais curto?",
-        options: ["Nilo", "Amazonas", "Danúbio", "Mississipi"],
-        correct: 2,
+        options: [
+            "Leste, Oeste, Oeste",
+             "Leste, Oeste, Sul",
+              "Leste, Norte, Oeste", 
+              "Nordeste, Centro-Oeste, Noroeste"
+            ],
+        correct: 0,
         difficulty: "hard",
         time: 120,
-        image: "img/Caminho.png".width = '100px',
+        image: "img/Caminho.png",
+    },
+    
+    // Impossíveis (3 questões)
+    {
+        question: "Em um experimento de física, um satélite geoestacionário é lançado da Terra. Considerando a inclinação do eixo terrestre de 23,5° e a rotação da Terra, qual é a relação matemática que descreve a variação da força gravitacional sentida pelo satélite ao longo de um ciclo completo de 24 horas, considerando a variação da distância do centro da Terra devido à forma oblata do planeta?",
+        options: [
+            "F = G * (M*m) / r² * (1 + 0,00335 * cos(2θ)) onde θ é a latitude",
+            "F = G * (M*m) / r² * (1 + 0,00335 * sin(ωt)) onde ω é a velocidade angular",
+            "F = G * (M*m) / r² * (1 + 0,00335 * cos(ωt)) onde ω = 2π/24h",
+            "F = G * (M*m) / r² * (1 + 0,00335 * sin²(θ)) onde θ é a inclinação do eixo",
+            "F = G * (M*m) / r² * (1 + 0,00335 * cos²(ωt)) onde ω = π/12h"
+        ],
+        correct: 2,
+        difficulty: "impossible",
+        time: 180,
+        image: "img/Inclinacao.gif"
+    },
+    {
+        question: "Um observador no Hemisfério Sul quer calcular o ângulo de elevação do Sol ao meio-dia durante o Solstício de Verão. Sabendo que a latitude do observador é 30°S e considerando a inclinação do eixo terrestre de 23,5°, qual é a fórmula correta para calcular a altura solar máxima (h) em graus?",
+        options: [
+            "h = 90° - latitude + 23,5°",
+            "h = 90° - latitude - 23,5°",
+            "h = 90° + latitude - 23,5°",
+            "h = 90° + latitude + 23,5°",
+            "h = 90° - |latitude - 23,5°|"
+        ],
+        correct: 0,
+        difficulty: "impossible",
+        time: 180,
+        image: "img/Solsticio.gif"
+    },
+    {
+        question: "Durante um eclipse lunar total, a sombra da Terra tem um diâmetro angular de aproximadamente 1,4° no céu. Se considerarmos que a Lua está a 384.400 km da Terra e tem um diâmetro de 3.474 km, qual é a distância aproximada entre o centro da Terra e o ponto onde a sombra da Terra termina (cone de umbra), considerando a geometria do eclipse e a inclinação orbital da Lua de 5,14°?",
+        options: [
+            "1.384.400 km",
+            "1.400.000 km",
+            "1.416.000 km",
+            "1.450.000 km",
+            "1.500.000 km"
+        ],
+        correct: 2,
+        difficulty: "impossible",
+        time: 180,
+        image: "img/InlinacaoTerra.gif"
     }
 ];
 
         // Sistema de Áudio
 const AudioSystem = {
     sounds: {},
+    backgroundMusic: null,
+    isMusicPlaying: false,
     
     init() {
         // Sons mais atraentes e menos enjoativos
@@ -198,6 +249,12 @@ const AudioSystem = {
         this.sounds.buttonClick = new Audio('https://assets.mixkit.co/active_storage/sfx/2574/2574-preview.mp3');
         this.sounds.levelUp = new Audio('https://assets.mixkit.co/active_storage/sfx/2021/2021-preview.mp3');
         this.sounds.perfectStreak = new Audio('https://assets.mixkit.co/active_storage/sfx/2023/2023-preview.mp3');
+        this.sounds.impossibleBonus = new Audio('https://assets.mixkit.co/active_storage/sfx/2022/2022-preview.mp3');
+        
+        // Música de fundo emocionante
+        this.backgroundMusic = new Audio('songs/background.mp3');
+        this.backgroundMusic.loop = true;
+        this.backgroundMusic.volume = 0.1;
         
         // Configurar volumes
         this.sounds.correct.volume = 0.4;
@@ -206,6 +263,7 @@ const AudioSystem = {
         this.sounds.buttonClick.volume = 0.4;
         this.sounds.levelUp.volume = 0.4;
         this.sounds.perfectStreak.volume = 0.6;
+        this.sounds.impossibleBonus.volume = 0.5;
     },
     
     playCorrect() {
@@ -236,6 +294,25 @@ const AudioSystem = {
     playPerfectStreak() {
         this.sounds.perfectStreak.currentTime = 0;
         this.sounds.perfectStreak.play().catch(e => console.log('Áudio bloqueado'));
+    },
+    
+    playImpossibleBonus() {
+        this.sounds.impossibleBonus.currentTime = 0;
+        this.sounds.impossibleBonus.play().catch(e => console.log('Áudio bloqueado'));
+    },
+    
+    playBackgroundMusic() {
+        if (!this.isMusicPlaying) {
+            this.backgroundMusic.play().catch(e => console.log('Música de fundo bloqueada'));
+            this.isMusicPlaying = true;
+        }
+    },
+    
+    pauseBackgroundMusic() {
+        if (this.isMusicPlaying) {
+            this.backgroundMusic.pause();
+            this.isMusicPlaying = false;
+        }
     }
 };
 
@@ -302,6 +379,7 @@ const Game = {
         this.currentQuestionIndex = 0;
         this.score = 0;
         this.consecutiveCorrect = 0;
+        this.impossibleStreak = 0; // Contador de acertos impossíveis consecutivos
         
         // Embaralhar perguntas
         this.shuffledQuestions = [...QUESTIONS].sort(() => Math.random() - 0.5);
@@ -309,6 +387,9 @@ const Game = {
         this.showScreen('quiz-screen');
         this.updateUserInfo();
         this.loadQuestion();
+        
+        // Iniciar música de fundo
+        AudioSystem.playBackgroundMusic();
     },
     
     loadQuestion() {
@@ -378,13 +459,33 @@ const Game = {
         
         document.getElementById('timer').textContent = timeStr;
         
-        // Mudar cor do timer quando estiver acabando
-        if (this.timeLeft <= 10) {
-            document.getElementById('timer').style.borderColor = 'var(--error-color)';
-            document.getElementById('timer').style.color = 'var(--error-color)';
+        // Efeitos visuais mais emocionantes para o timer
+        const timerElement = document.getElementById('timer');
+        
+        // Timer piscando quando estiver acabando
+        if (this.timeLeft <= 5) {
+            timerElement.style.borderColor = 'var(--error-color)';
+            timerElement.style.color = 'var(--error-color)';
+            timerElement.style.animation = 'pulse 0.5s infinite';
+            timerElement.style.boxShadow = '0 0 10px var(--error-color)';
+            
+            // Efeito de som de tique-taque acelerado
+            if (this.timeLeft % 2 === 0) {
+                timerElement.style.transform = 'scale(1.1)';
+            } else {
+                timerElement.style.transform = 'scale(1)';
+            }
+        } else if (this.timeLeft <= 10) {
+            timerElement.style.borderColor = 'var(--warning-color)';
+            timerElement.style.color = 'var(--warning-color)';
+            timerElement.style.animation = 'shake 0.5s infinite';
+            timerElement.style.boxShadow = '0 0 5px var(--warning-color)';
         } else {
-            document.getElementById('timer').style.borderColor = 'var(--border-color)';
-            document.getElementById('timer').style.color = 'var(--primary-color)';
+            timerElement.style.borderColor = 'var(--border-color)';
+            timerElement.style.color = 'var(--primary-color)';
+            timerElement.style.animation = 'none';
+            timerElement.style.boxShadow = 'none';
+            timerElement.style.transform = 'scale(1)';
         }
     },
     
@@ -421,6 +522,22 @@ const Game = {
                 this.showFeedback('success', 'Resposta Correta! +3 pontos');
             }
             
+            // Sistema de pontos para questões impossíveis
+            if (question.difficulty === 'impossible') {
+                points = 6; // 6 pontos para questões impossíveis
+                this.impossibleStreak++;
+                
+                // Bônus de pontos dobrados duas vezes para 3 acertos impossíveis consecutivos
+                if (this.impossibleStreak === 3) {
+                    const bonusPoints = this.score * 3; // Quadruplicar pontos atuais (dobrar duas vezes)
+                    this.score += bonusPoints;
+                    this.showFeedback('success', `🎉 TRÊS IMPOSSÍVEIS CONSECUTIVOS! PONTOS ATUAIS QUADRUPLICADOS! +${bonusPoints} pontos!`);
+                    AudioSystem.playImpossibleBonus();
+                }
+            } else {
+                this.impossibleStreak = 0; // Resetar streak impossível
+            }
+            
             this.score += points;
             this.consecutiveCorrect++;
             
@@ -433,6 +550,7 @@ const Game = {
             }
         } else {
             this.consecutiveCorrect = 0;
+            this.impossibleStreak = 0; // Resetar streak impossível
             this.showFeedback('error', `Resposta Errada! A alternativa correta era: ${question.options[question.correct]}`);
             AudioSystem.playWrong();
         }
@@ -451,6 +569,20 @@ const Game = {
         feedbackMessage.className = `feedback-message ${type}`;
         feedbackMessage.textContent = message;
         feedbackContainer.classList.remove('hidden');
+        
+        // Efeitos visuais para feedback
+        if (type === 'success') {
+            feedbackContainer.style.animation = 'popIn 0.3s ease-out';
+            feedbackMessage.style.animation = 'bounce 0.5s ease-out';
+        } else {
+            feedbackContainer.style.animation = 'shake 0.5s ease-out';
+        }
+        
+        // Resetar animação após 1 segundo
+        setTimeout(() => {
+            feedbackContainer.style.animation = 'none';
+            feedbackMessage.style.animation = 'none';
+        }, 1000);
     },
     
     nextQuestion() {
