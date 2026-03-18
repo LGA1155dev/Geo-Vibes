@@ -104,10 +104,10 @@ const QUESTIONS = [
     {
         question: "Em certos periodos, a terra se encontra em estações diferentes em cada um de seus hemisferios, identifique os hemiferios e o nome do fenômeno: ",
         options: [
-            "Inclinação do eixo da Terra, hemisferios Leste e Oeste",
-"Inclinação do eixo da terra nos hemisfeios Norte e Sul",
+            "Inclinação do eixo da Terra, hemisférios Leste e Oeste",
+"Inclinação do eixo da terra nos hemisféios Norte e Sul",
 "Inlinação do eixo da terra, no tropico de cancer e capricornio",
-"Inclinação do eixo da terra nos hemisferios ao sul do Trop de capr e norte do Trop de cancer"
+"Inclinação do eixo da terra nos hemisférios ao sul do Trop de capr e norte do Trop de cancer"
             ],
         correct: 1,
         difficulty: "easy",
@@ -117,14 +117,14 @@ const QUESTIONS = [
     {
         question: "Em certos periodos, a terra passa por um fênomeno que é reponsavel pela má distribuição de iluminação onde um dos hemisferios recebe mais iluminação do que o outro hemisferio, fazendo assim com que as eleições ocorram de maneira inversa em cada um dos hemisferios, este fênomeno é chamado de:  ",
         options: [
-            "Equinocios",
+"Equinocios",
 "Periélio",
 "Solsticis",
 "Soustício",
 "Solsticios",
 "Solticios",
             ],
-        correct: 3,
+        correct: 4,
         difficulty: "easy",
         time: 60,
         image: "img/Equinocio.gif"
@@ -146,20 +146,7 @@ const QUESTIONS = [
         time: 60,
         image: "img/Tropicos.png"
     },
-    {
-        question: "hello world, determine a posição dos pontos A e B neste mapa",
-        options: [
-            "A = 20° Norte, e 80° Oeste; B = 0°",
-"A = 20° Sul, e 20° Oeste; B = 0°",
-"A = 80° Sul, e 20° Oeste; B = 0°",
-"A = 20° Sul, e 80° Oeste; B = 0°",
-"A = 20° Sul, e 30° Oeste; B = 0°",
-            ],
-        correct: 3,
-        difficulty: "medium",
-        time: 60,
-        image: "img/PontosAeB.jpg"
-    },
+    
     {
         question: "A inclinação do eixo da Terra em relação ao plano de sua órbita desempenha um papel essencial na forma como a energia solar se distribui pelo planeta e na organização das zonas climáticas. Explique de que maneira essa inclinação modifica a quantidade de radiação solar recebida em diferentes latitudes e como essa variação contribui para a formação dos padrões climáticos da Terra: ",
         options: [
@@ -171,7 +158,7 @@ const QUESTIONS = [
 
 "A inclinação do eixo da Terra faz com que o Sol fique mais forte no centro da Terra e mais fraco nas bordas do planeta.",
             ],
-        correct: 0,
+        correct: 1,
         difficulty: "medium",
         time: 60,
         image: "img/TerraGirando.gif"
@@ -196,12 +183,12 @@ const QUESTIONS = [
         image: "img/rotacao.gif"
     },
     {
-        question: "Qual rio atravessa mais países?",
+        question: "Qual o caminho mais curto?",
         options: ["Nilo", "Amazonas", "Danúbio", "Mississipi"],
         correct: 2,
         difficulty: "hard",
         time: 120,
-        image: "https://images.unsplash.com/photo-1516096569133-4fbe4c895998?w=800&auto=format&fit=crop&q=60"
+        image: "img/Caminho.png".width = '100px',
     }
 ];
 
@@ -218,11 +205,11 @@ const AudioSystem = {
         this.sounds.levelUp = new Audio('https://assets.mixkit.co/active_storage/sfx/2021/2021-preview.mp3');
         
         // Configurar volumes
-        this.sounds.correct.volume = 0.7;
-        this.sounds.wrong.volume = 0.6;
-        this.sounds.timeUp.volume = 0.8;
-        this.sounds.buttonClick.volume = 0.5;
-        this.sounds.levelUp.volume = 0.7;
+        this.sounds.correct.volume = 0.4;
+        this.sounds.wrong.volume = 0.4;
+        this.sounds.timeUp.volume = 0.4;
+        this.sounds.buttonClick.volume = 0.4;
+        this.sounds.levelUp.volume = 0.4;
     },
     
     playCorrect() {
@@ -331,9 +318,6 @@ const Game = {
         
         const question = this.shuffledQuestions[this.currentQuestionIndex];
         
-        // Embaralhar as opções para cada carregamento de pergunta
-        const shuffledOptions = this.shuffleOptions(question.options, question.correct);
-        
         // Atualizar UI
         document.getElementById('question-text').textContent = question.question;
         document.getElementById('question-image').style.backgroundImage = `url('${question.image}')`;
@@ -345,17 +329,17 @@ const Game = {
         const progress = ((this.currentQuestionIndex) / this.shuffledQuestions.length) * 100;
         document.getElementById('progress-fill').style.width = `${progress}%`;
         
-        // Criar opções embaralhadas
+        // Criar opções na ordem original
         const optionsContainer = document.getElementById('options-container');
         optionsContainer.innerHTML = '';
         
-        shuffledOptions.options.forEach((option, index) => {
+        question.options.forEach((option, index) => {
             const button = document.createElement('button');
             button.className = 'option-btn';
             button.innerHTML = `<span>${String.fromCharCode(65 + index)}</span> ${option}`;
             button.onclick = () => {
                 AudioSystem.playButton();
-                this.checkAnswer(index, shuffledOptions.correctIndex);
+                this.checkAnswer(index, question.correct);
             };
             optionsContainer.appendChild(button);
         });

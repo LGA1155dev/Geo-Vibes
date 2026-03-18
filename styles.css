@@ -26,6 +26,18 @@
     --input-border: #334155;
     --option-bg: #0b1220;
     --option-border: #334155;
+    
+    /* Novas cores vibrantes para jogo */
+    --neon-blue: #00f5ff;
+    --neon-pink: #ff00ff;
+    --neon-green: #00ff00;
+    --neon-orange: #ff6b00;
+    --neon-purple: #8a2be2;
+    --neon-yellow: #ffff00;
+    
+    /* Gradientes neon */
+    --neon-gradient: linear-gradient(45deg, var(--neon-blue), var(--neon-pink), var(--neon-green));
+    --neon-glow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue), 0 0 30px var(--neon-blue);
 }
 
 * {
@@ -84,11 +96,19 @@ body {
     font-size: 2.5rem;
     margin-bottom: 0.5rem;
     font-weight: 800;
-    background: var(--primary-gradient);
+    font-family: 'Orbitron', sans-serif;
+    background: var(--neon-gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    text-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+    text-shadow: 0 0 20px rgba(102, 126, 234, 0.3), 0 0 40px var(--neon-blue);
+    animation: neon-flicker 2s infinite alternate;
+    letter-spacing: 2px;
+}
+
+@keyframes neon-flicker {
+    0%, 100% { text-shadow: 0 0 20px rgba(102, 126, 234, 0.3), 0 0 40px var(--neon-blue); }
+    50% { text-shadow: 0 0 10px rgba(102, 126, 234, 0.1), 0 0 20px var(--neon-blue); }
 }
 
 .logo p {
@@ -261,7 +281,24 @@ body {
     left: 0;
     right: 0;
     height: 4px;
-    background: var(--ocean-gradient);
+    background: var(--neon-gradient);
+    box-shadow: var(--neon-glow);
+}
+
+/* Efeitos de partículas no quiz */
+.quiz-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 20% 20%, rgba(0, 245, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255, 0, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 60%, rgba(0, 255, 0, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
 }
 
 .quiz-header {
@@ -404,6 +441,7 @@ body {
     position: relative;
     overflow: hidden;
     color: var(--text-primary);
+    border-image: linear-gradient(45deg, transparent, var(--neon-blue), transparent) 1;
 }
 
 .option-btn::before {
@@ -418,10 +456,16 @@ body {
 }
 
 .option-btn:hover {
-    border-color: var(--primary-color);
-    background: rgba(99, 179, 237, 0.15);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(99, 179, 237, 0.3);
+    border-color: var(--neon-blue);
+    background: rgba(0, 245, 255, 0.1);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(0, 245, 255, 0.3), var(--neon-glow);
+    animation: hover-glow 1s infinite alternate;
+}
+
+@keyframes hover-glow {
+    from { box-shadow: 0 8px 25px rgba(0, 245, 255, 0.3), 0 0 10px var(--neon-blue); }
+    to { box-shadow: 0 8px 25px rgba(0, 245, 255, 0.5), 0 0 20px var(--neon-blue); }
 }
 
 .option-btn:hover::before {
@@ -429,8 +473,8 @@ body {
 }
 
 .option-btn:active {
-    transform: translateY(0);
-    box-shadow: 0 4px 15px rgba(99, 179, 237, 0.4);
+    transform: translateY(0) scale(0.98);
+    box-shadow: 0 4px 15px rgba(0, 245, 255, 0.4), 0 0 15px var(--neon-blue);
 }
 
 .option-btn:disabled {
@@ -438,20 +482,37 @@ body {
     opacity: 0.6;
     transform: none !important;
     box-shadow: none !important;
+    filter: grayscale(100%);
 }
 
 .option-btn.correct {
-    border-color: var(--success-color);
-    background: rgba(72, 187, 120, 0.15);
-    color: #86efac;
-    box-shadow: 0 4px 20px rgba(72, 187, 120, 0.4);
+    border-color: var(--neon-green);
+    background: rgba(0, 255, 0, 0.1);
+    color: #00ff00;
+    box-shadow: 0 4px 20px rgba(0, 255, 0, 0.4), 0 0 15px var(--neon-green);
+    animation: correct-pulse 0.5s ease-in-out 3;
+}
+
+@keyframes correct-pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); box-shadow: 0 4px 20px rgba(0, 255, 0, 0.4), 0 0 25px var(--neon-green); }
+    100% { transform: scale(1); }
 }
 
 .option-btn.wrong {
-    border-color: var(--error-color);
-    background: rgba(245, 101, 101, 0.15);
-    color: #fca5a5;
-    box-shadow: 0 4px 20px rgba(245, 101, 101, 0.4);
+    border-color: var(--neon-red);
+    background: rgba(255, 0, 0, 0.1);
+    color: #ff0000;
+    box-shadow: 0 4px 20px rgba(255, 0, 0, 0.4), 0 0 15px var(--neon-red);
+    animation: wrong-shake 0.5s ease-in-out;
+}
+
+@keyframes wrong-shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
 }
 
 .feedback-container {
